@@ -27,20 +27,16 @@ const taskReducer = (state = initialState, action) =>{
 }
 
 export const store = createStore(taskReducer);
-//console.log(store);
-//console.log(store.getState());
-//store.dispatch({type:ADD_TASK , payload : "Buy Apple"});
-const addTask = (data)=> {
+
+export const addTask = (data)=> {
     return {type:ADD_TASK , payload : data}
 }
 store.dispatch(addTask("Buy Apple"));
 //console.log("Updated State: ",store.getState());
 // store.dispatch({type:ADD_TASK , payload : "Buy Mango"});
-store.dispatch(addTask("Buy Mango"));
-//console.log("Updated State: ",store.getState());
-// store.dispatch({type:DELETE_TASK , payload : 1});
-const deleteTask = (id) =>{
+
+export const deleteTask = (id) =>{
     return {type:DELETE_TASK , payload : id}
 }
-store.dispatch(deleteTask(1));
+//store.dispatch(deleteTask(1));
 //console.log("deleted State: ",store.getState());
