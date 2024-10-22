@@ -1,4 +1,5 @@
 import {createStore} from "redux";
+import { composeWithDevTools } from '@redux-devtools/extension';
 const ADD_TASK = "task/add";
 const DELETE_TASK = "task/delete";
 const initialState = {
@@ -26,7 +27,7 @@ const taskReducer = (state = initialState, action) =>{
     } 
 }
 
-export const store = createStore(taskReducer);
+export const store = createStore(taskReducer,composeWithDevTools());
 
 export const addTask = (data)=> {
     return {type:ADD_TASK , payload : data}
