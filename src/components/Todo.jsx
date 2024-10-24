@@ -1,20 +1,24 @@
 import { useSelector,useDispatch } from "react-redux";
 import { MdDeleteForever} from "react-icons/md";
 import { useState } from "react";
-import { addTask, deleteTask } from "../Store";
+import { addTask, deleteTask, fetchTask } from "../Store";
 export const Todo = () => {
   const[task,setTask] = useState("");
   const tasks = useSelector((state) => state.task);
   const dispatch = useDispatch();
+  // handle handleTaskDelete
+  const handleTaskDelete = (id) =>{
+    return dispatch(deleteTask(id));
+  }
+  //handle handleFetchTasks 
+  const handleFetchTasks = () =>{
+    return dispatch(fetchTask());
+  }
   //handle handleFormSubmit
   const handleFormSubmit = (e) =>{
     e.preventDefault();
     dispatch(addTask(task));
     return setTask("");
-  }
-  // handle handleTaskDelete
-  const handleTaskDelete = (id) =>{
-    return dispatch(deleteTask(id));
   }
   return (
     <div className="container">
@@ -29,6 +33,7 @@ export const Todo = () => {
             <button>Add Task</button>
           </form>
         </div>
+        <button onClick={ handleFetchTasks }> Fetch Task</button>
         <ul id="list-container">
           {tasks.map((curTask, index) => {
             return (
