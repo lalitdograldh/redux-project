@@ -4,7 +4,7 @@ import { useState } from "react";
 import { addTask, deleteTask, fetchTask } from "../Store";
 export const Todo = () => {
   const[task,setTask] = useState("");
-  const tasks = useSelector((state) => state.task);
+  const tasks = useSelector((state) => state.taskReducer.task);
   const dispatch = useDispatch();
   // handle handleTaskDelete
   const handleTaskDelete = (id) =>{

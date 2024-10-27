@@ -1,6 +1,8 @@
-import {applyMiddleware,createStore} from "redux";
-import { composeWithDevTools } from '@redux-devtools/extension';
-import {thunk} from 'redux-thunk';
+// import {applyMiddleware,createStore} from "redux";
+// import { composeWithDevTools } from '@redux-devtools/extension';
+// import {thunk} from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
+
 const ADD_TASK = "task/add";
 const DELETE_TASK = "task/delete";
 const FETCH_TASK = "task/fetch";
@@ -33,7 +35,15 @@ const taskReducer = (state = initialState, action) =>{
     } 
 }
 
-export const store = createStore(taskReducer,composeWithDevTools( applyMiddleware( thunk )));
+// old code
+//export const store = createStore(taskReducer,composeWithDevTools( applyMiddleware( thunk )));
+
+// new style
+export const store = configureStore({
+    reducer:{
+        taskReducer
+    }
+})
 
 export const addTask = (data)=> {
     return {type:ADD_TASK , payload : data}
