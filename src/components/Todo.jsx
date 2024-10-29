@@ -1,7 +1,7 @@
 import { useSelector,useDispatch } from "react-redux";
 import { MdDeleteForever} from "react-icons/md";
 import { useState } from "react";
-import { addTask, deleteTask, fetchTask } from "../Store";
+//import { addTask, deleteTask, fetchTask } from "../Store";
 export const Todo = () => {
   const[task,setTask] = useState("");
   const tasks = useSelector((state) => state.taskReducer.task);
