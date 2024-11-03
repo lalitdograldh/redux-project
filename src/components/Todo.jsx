@@ -33,7 +33,7 @@ export const Todo = () => {
             <button>Add Task</button>
           </form>
         </div>
-        <button onClick={ handleFetchTasks }> Fetch Task</button>
+        {/* <button onClick={ handleFetchTasks }> Fetch Task</button> */}
         <ul id="list-container">
           {tasks.map((curTask, index) => {
             return (

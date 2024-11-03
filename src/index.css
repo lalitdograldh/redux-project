@@ -99,3 +99,22 @@ ul li.checked{
   color: #555;
   text-decoration: line-through;
 }
+
+.clear-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.clear-all:hover {
+  color: #ff0000; /* Change to any color you want on hover */
+}
+
+.clear-all span {
+  font-size: 1.2rem;
+}

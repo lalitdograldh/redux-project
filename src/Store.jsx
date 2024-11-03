@@ -48,10 +48,13 @@ const taskReducer = createSlice({
     },
     deleteTask(state,action){
         state.task = state.task.filter((curTask,index) =>index !== action.payload)
+    },
+    clearTask(state){
+      state.task = []
     }
 }
 });
-const { addTask,deleteTask} = taskReducer.actions;
+export const { addTask,deleteTask,clearTask} = taskReducer.actions;
 // new style
 export const store = configureStore({
   reducer: {
@@ -59,9 +62,11 @@ export const store = configureStore({
   },
 });
 
-console.log(store.getState());
-console.log(store.dispatch(addTask("Buy Apple")));
-console.log(store.dispatch(addTask("Buy Mango")));
+// console.log(store.getState());
+// console.log(store.dispatch(addTask("Buy Apple")));
+// console.log(store.dispatch(addTask("Buy Mango")));
+// console.log(store.dispatch(addTask("Buy Mango55")));
+//console.log(store.dispatch(clearTask()));
 //console.log(store.dispatch(deleteTask(1)));
 console.log(store.getState());
 // export const addTask = (data) => {
