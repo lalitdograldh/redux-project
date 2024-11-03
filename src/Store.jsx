@@ -6,8 +6,12 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 //const ADD_TASK = "task/add";
 //const DELETE_TASK = "task/delete";
 //const FETCH_TASK = "task/fetch";
+const loadTasksFromLocalStorage = () => {
+  const tasks = localStorage.getItem("tasks");
+  return tasks ? JSON.parse(tasks) : [];
+};
 const initialState = {
-  task: [],
+  task: loadTasksFromLocalStorage (),
   isLoading: false,
 };
 // const taskReducer = (state = initialState, action) => {
@@ -44,13 +48,16 @@ const taskReducer = createSlice({
   initialState,
   reducers : {
     addTask(state,action){
-        state.task.push(action.payload)
+        state.task.push(action.payload);
+        localStorage.setItem("tasks", JSON.stringify(state.task));
     },
     deleteTask(state,action){
-        state.task = state.task.filter((curTask,index) =>index !== action.payload)
+        state.task = state.task.filter((curTask,index) =>index !== action.payload);
+        localStorage.setItem("tasks", JSON.stringify(state.task));
     },
     clearTask(state){
-      state.task = []
+      state.task = [];
+      localStorage.setItem("tasks", JSON.stringify(state.task));
     }
 }
 });
@@ -62,10 +69,9 @@ export const store = configureStore({
   },
 });
 
-// console.log(store.getState());
+console.log(store.getState());
 // console.log(store.dispatch(addTask("Buy Apple")));
 // console.log(store.dispatch(addTask("Buy Mango")));
-// console.log(store.dispatch(addTask("Buy Mango55")));
 //console.log(store.dispatch(clearTask()));
 //console.log(store.dispatch(deleteTask(1)));
 console.log(store.getState());
