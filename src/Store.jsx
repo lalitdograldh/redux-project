@@ -1,19 +1,21 @@
 // import {applyMiddleware,createStore} from "redux";
 // import { composeWithDevTools } from '@redux-devtools/extension';
 // import {thunk} from 'redux-thunk';
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import taskReducer from "./features/tasks/taskSlice";
 
+// new style
+export const store = configureStore({
+  reducer: {
+    taskReducer,   
+  },
+});
+
+// old code
 //const ADD_TASK = "task/add";
 //const DELETE_TASK = "task/delete";
 //const FETCH_TASK = "task/fetch";
-const loadTasksFromLocalStorage = () => {
-  const tasks = localStorage.getItem("tasks");
-  return tasks ? JSON.parse(tasks) : [];
-};
-const initialState = {
-  task: loadTasksFromLocalStorage (),
-  isLoading: false,
-};
+
 // const taskReducer = (state = initialState, action) => {
 //   switch (action.type) {
 //     case ADD_TASK:
@@ -39,52 +41,14 @@ const initialState = {
 //   }
 // };
 
-// old code
+
 //export const store = createStore(taskReducer,composeWithDevTools( applyMiddleware( thunk )));
 
 
-const taskReducer = createSlice({
-  name:"task", 
-  initialState,
-  reducers : {
-    addTask(state,action){
-        state.task.push(action.payload);
-        localStorage.setItem("tasks", JSON.stringify(state.task));
-    },
-    deleteTask(state,action){
-        state.task = state.task.filter((curTask,index) =>index !== action.payload);
-        localStorage.setItem("tasks", JSON.stringify(state.task));
-    },
-    clearTask(state){
-      state.task = [];
-      localStorage.setItem("tasks", JSON.stringify(state.task));
-    }
-}
-});
-export const { addTask,deleteTask,clearTask} = taskReducer.actions;
-// new style
-export const store = configureStore({
-  reducer: {
-    taskReducer:taskReducer.reducer,   
-  },
-});
 
-console.log(store.getState());
-// console.log(store.dispatch(addTask("Buy Apple")));
-// console.log(store.dispatch(addTask("Buy Mango")));
-//console.log(store.dispatch(clearTask()));
-//console.log(store.dispatch(deleteTask(1)));
-console.log(store.getState());
-// export const addTask = (data) => {
-//   return { type: ADD_TASK, payload: data };
-// };
-//store.dispatch(addTask("Buy Apple"));
-//console.log("Updated State: ",store.getState());
-// store.dispatch({type:ADD_TASK , payload : "Buy Mango"});
 
-// export const deleteTask = (id) => {
-//   return { type: DELETE_TASK, payload: id };
-// };
+
+
 
 // export const fetchTask = () => {
 //   return async (dispatch) => {

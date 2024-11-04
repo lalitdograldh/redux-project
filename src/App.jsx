@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Todo } from "./components/Todo";
 import { MdDeleteForever, MdOutlineClearAll } from "react-icons/md";
 import { useState } from "react";
-import { addTask, clearTask, deleteTask } from "./Store";
+import { addTask, clearTask, deleteTask } from "./features/tasks/taskSlice";
 
 const App = () => {
   const [userTask, setUserTask] = useState("");
